@@ -1,0 +1,58 @@
+body,
+html {
+    height: 100%;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("images/poultry.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#orange {
+    background-color: #ff7200;
+    color: #ffffff;
+    border-radius: 10px;
+    word-wrap: break-word;
+}
+
+#login {
+    color: #444444;
+}
+
+#white {
+    border-radius: 10px;
+}
+
+#gmaps img {
+    background-color: #7C1212;
+    max-height: 40%;
+    max-width: 40%;
+}
+
+#sideb {
+    overflow-y: scroll;
+    max-height: 100%;
+    max-width: 30%;
+    margin-top: 7%;
+}
+
+#sideb button{
+    padding: 1px 5px;
+    max-height: 2%;
+    max-width: 30%;
+    font-size: 12px;
+    margin: 0px 8px;
+}
+
+.medchick {
+    background-color: #ff7200;
+    max-width: 100%;
+    max-height: 30%;
+    padding: 5px;
+}

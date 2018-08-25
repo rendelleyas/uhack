@@ -1,3 +1,7 @@
+function changeHTML(idName,newValue){
+	var toChange = document.getElementById(idName);
+	toChange.innerHTML = newValue;
+}
 function changeDisplay(idName,disp){
 	var toShow = document.getElementById(idName);
 	
@@ -29,6 +33,7 @@ function changeCSS(idName,properTy,values){
 	
 	toChange.style.setProperty(properTy,values);
 }
+
 function myMap() {
 	var mapProp= {
 		center:new google.maps.LatLng(7.1907,125.4553),
