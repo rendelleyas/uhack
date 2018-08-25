@@ -51,8 +51,27 @@ html {
 }
 
 .medchick {
-    background-color: #ff7200;
+    background-color: #dcdcdc;
     max-width: 100%;
     max-height: 30%;
     padding: 5px;
+}
+
+#userb {
+    overflow-y: scroll;
+    max-height: 100%;
+    max-width: 30%;
+    margin-top: 7%;
+}
+
+#addrep {
+    padding: 10px;
+    margin-top: 7%;
+    font-size: 24px;
+}
+
+.logo img{
+	max-height: 20%;
+	max-width: 20%;
+
 }

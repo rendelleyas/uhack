@@ -54,7 +54,7 @@
             while($row = mysqli_fetch_assoc($result)){
                 switch($table_number){
                     case 1:{
-                        $cLine []=array( $row['id'] , $row['reportDate'] , $row['location'] , $row['userId'] , $row['symptoms'] , $row['status'] , $row['notif']);
+                        $cLine []=array( $row['id'] , $row['reportDate'] , $row['location'] , $row['userId'] , $row['symptoms'] , $row['status'] , $row['notif'] , $row['diagnosedBy'] , $row['diagnoseDate'] , $row['diagnostics']);
                         break;
                     }
 					case 2:{
@@ -126,11 +126,13 @@
         }
     }
 	
-	function getDateNow(){
+	function getDateNow($length){
 		$conn = connect_to_database('localhost','root','','vf_db',true);
-        $query="select substr(now(),1,10) as dateNow";
-        //echo $query;
-        $result = mysqli_query($conn,$query);
+        $query="select substr(now(),1,".$length.") as dateNow";
+        
+		//echo $query;
+        
+		$result = mysqli_query($conn,$query);
         if(!$result){
             die("Query Failed");
         }else {
@@ -147,6 +149,7 @@
             
         return $cLine[0][0];
     }
+	
 	
 	function encrypt($plaintext, $salt){
 		$result="";
