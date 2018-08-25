@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <?php
 	include("functions.php");
+	
+	if(isset($_POST['diagnose'])){
+		$result = update_values('reports','status="checked",notif="unread",diagnosedBy="'.$_GET['vId'].'",diagnoseDate="'.getDateNow(19).'" , diagnostics="'.$_POST['diagnostics'].'"','id="'.$_POST['rId'].'"');
+		if($result){
+			
+		}else{
+			echo "Failed";
+		}
+	}
 ?>
 <html>
     <head>
@@ -73,7 +82,7 @@
             <ul class="uk-nav uk-nav-default uk-position-top-right uk-list-large uk-list-striped uk-width-1-3" id="sideb">
                 <li class="uk-active"><a href="#"><b>Notifications</b></a></li>
 				<?php
-					$result = return_values("*","reports","where status='unchecked'",1);
+					$result = return_values("*","reports","where status='unchecked' || status='checked'",1);
 					for($n=0;$n<sizeof($result);$n++){
 						$user = return_values("*","users","where id='".$result[$n][3]."'",2);
 						$coordinates = explode("@@",$result[$n][2]);
@@ -85,6 +94,7 @@
 								changeHTML(\'fullName\',\''.$user[0][1].'\');
 								changeHTML(\'reportDate\',\''.substr($result[$n][1],0,19).'\');
 								changeHTML(\'symptoms\',\''.$result[$n][4].'\');
+								addUnit(\'reportId\',\''.$result[$n][0].'\');
 									">Details</button>
                 
 							<button class="uk-button uk-button-primary" type="button" onclick="location.href=\'vetSide.php?vId='.$_GET['vId'].'&lat='.$coordinates[0].'&lon='.$coordinates[1].'&name='.$user[0][1].'\'">View Location</button></li>
@@ -93,17 +103,23 @@
 				?>
                 
 
-                <li><a href="#">mas lala lng si dave.</a><button class="uk-button uk-button-primary uk-margin-small-right" type="button" uk-toggle="target: #modal-example">Details</button><button class="uk-button uk-button-primary" type="button">View Location</button></li>
+                
             </ul>
 
             <div id="modal-example" uk-modal>
                 <div class="uk-modal-dialog uk-modal-body">
-                <h2 id="fullName" class="uk-modal-title">Farmer's Name</h2>
-                <h6 id="reportDate">Date:</h6>
-                <textarea class="uk-textarea" name="" id="symptoms" cols="30" rows="10" readonly="true">Dri nahitabo ang mga pangyayari</textarea>
-                <p class="uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
-                </p>
+				<form method="POST" action="">  <!--DRIA bago -->
+					<h2 id="fullName" class="uk-modal-title">Farmer's Name</h2>
+					<h6 id="reportDate">Date:</h6>
+					<textarea class="uk-textarea" name="" id="symptoms" cols="30" rows="10" readonly="true">Dri nahitabo ang mga pangyayari</textarea>
+					
+					<!--DRIA IADD -->
+					<input id="reportId" type="text" name="rId" style="display: none;" value="" >
+					<textarea name="diagnostics" class="uk-textarea" name="" id="" cols="30" rows="10" placeholder="Please Type in your diagnosis..." required="true"></textarea>
+					<p class="uk-text-right">
+						<button  class="uk-button uk-button-primary" type="submit" name="diagnose" >Submit</button>
+						<button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
+					</p>
                 </div>
             </div>
         </div>
